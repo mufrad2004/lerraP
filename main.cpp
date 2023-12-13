@@ -70,6 +70,10 @@ int main(){
             cout << "Masukkan Nama Dokter : ";
             cin >> namaDokter;
             cout << "Jumlah Pasien Dokter " << namaDokter << " : "<< JmlPasienDokterX(ld, namaDokter)  << " pasien"<< endl;
+        }else if (pilihan == 10){
+            cout << "Masukkan nama pasien : " ;
+            cin >> namaPasien;
+            deletePasienX(ld,lp,namaPasien); 
         }
         cout << endl;
         pilihan = menuTugas();

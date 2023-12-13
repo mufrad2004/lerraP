@@ -93,7 +93,14 @@ adrRelasi CariChildXDokter(listDokter l, string namaDokter, string namaPasien);
 void deleteFirstRelasi(adrDokter l,adrRelasi &r);
 void deleteLastRelasi(adrDokter l ,adrRelasi &r);
 void deleteAfterRelasi( adrDokter l,adrRelasi prec,adrRelasi &r);
+void deleteFirstPasien(listPasien &l , adrPasien &p);
+void deleteLastPasien(listPasien &l , adrPasien &p);
+void deleteAfterPasien(listPasien &l, adrPasien prec , adrPasien &p);
+
+
+
 void deleteChildXDokterX(listDokter &l, string namaPasien , string namaDokter, adrRelasi &r);
+void deletePasienX(listDokter &l1, listPasien &l2, string nama);
 
 // ? 11. Menghitung jumlah data child dari parent tertentu (5)
 int JmlPasienDokterX(listDokter l, string namaDokter);

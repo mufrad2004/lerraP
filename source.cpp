@@ -103,6 +103,7 @@ void deleteFirstDokter(listDokter &l, adrDokter &p){
     p = l.first;
     l.first =  p->nextDokter;
     p->nextDokter = NULL;
+    delete(p);
 }
 
 void deleteLastDokter(listDokter &l, adrDokter &p){
@@ -112,12 +113,14 @@ void deleteLastDokter(listDokter &l, adrDokter &p){
     }
     p = q->nextDokter;
     q->nextDokter = NULL;
+    delete(p);
 }
 
 void deleteAfterDokter(listDokter &l, adrDokter prec, adrDokter &p){
     p = prec->nextDokter;
     prec->nextDokter = p->nextDokter;
     p->nextDokter = NULL;
+    delete(p);
 }
 
 // ? 4. Mencari data parent (5)
@@ -233,6 +236,7 @@ void deleteFirstRelasi(adrDokter p, adrRelasi &r){
     r = p->nextRelasi;
     p->nextRelasi = r->nextRelasi;
     r->nextRelasi = NULL;
+    delete(r);
 }
 
 void deleteLastRelasi(adrDokter p, adrRelasi &r){
@@ -242,12 +246,14 @@ void deleteLastRelasi(adrDokter p, adrRelasi &r){
     }
     r = q->nextRelasi;
     q->nextRelasi = NULL;
+    delete(r);
 }
 
 void deleteAfterRelasi(adrDokter p, adrRelasi prec, adrRelasi &r){
     r = prec->nextRelasi;
     prec->nextRelasi = r->nextRelasi;
     r->nextRelasi = NULL;
+    delete(r);
 }
 
 void deleteChildXDokterX(listDokter &l, string namaPasien , string namaDokter, adrRelasi &q){
@@ -329,6 +335,7 @@ int menuTugas(){
     cout << "7. Hapus Data Dokter" << endl;
     cout << "8. Hapus Data Child Pada Dokter X" << endl;
     cout << "9. Jumlah Pasien Dokter X" << endl;
+    cout << "10. Delete Pasien" << endl;
     cout << "0. Exit"<< endl;
     cout << "-----------------------------------------------------------" << endl;
     cin >> pilihan;
@@ -411,4 +418,77 @@ void inputDataRelasi(listDokter &l1 , listPasien l2){
         insertRelasi(l1, p, q);
         cout << endl;
     }
+}
+
+
+
+void deleteFirstPasien(listPasien &l , adrPasien &p){
+    p = l.first;
+    l.first = p->nextPasien;
+    p->nextPasien = NULL;
+    delete(p);
+}
+void deleteLastPasien(listPasien &l , adrPasien &p){
+    adrPasien q;
+    q= l.first;
+    while(q->nextPasien->nextPasien != NULL){
+        q = q->nextPasien;
+    }
+    p = q->nextPasien;
+    q->nextPasien = NULL;
+    delete(p);
+}
+
+
+void deleteAfterPasien(listPasien &l, adrPasien prec , adrPasien &p){
+    p = prec->nextPasien;
+    prec->nextPasien = NULL;
+    delete(p);
+}
+
+
+void deletePasienX(listDokter &l1, listPasien &l2, string nama){
+    adrDokter p ;
+    adrPasien q = cariPasien(l2,nama);
+    adrPasien prec2;
+    adrRelasi r,prec;
+    if (q == NULL){
+        cout << "Pasien " << nama << " tidak ditermukan" << endl;
+    }else {
+        p = l1.first;
+        while(p != NULL){
+            r = p->nextRelasi;
+            prec = r;
+            while(r != NULL){
+                if (r->nextPasien == q){
+                    if (r == p->nextRelasi){
+                        deleteFirstRelasi(p,r);
+                        prec = p->nextRelasi;
+                        r = prec;
+                    }else if (r->nextRelasi == NULL){
+                        deleteLastRelasi(p,r);
+                        r = prec->nextRelasi;
+                    }else {
+                        deleteAfterRelasi(p,prec,r);
+                        r = prec->nextRelasi;
+                    }
+                } else {
+                    prec = r;
+                    r = r->nextRelasi;
+                }
+            }
+            p = p->nextDokter;
+        }
+
+        if (q == l2.first){
+            deleteFirstPasien(l2, q);
+        }else if (q->nextPasien == NULL){
+            deleteLastPasien(l2,q);
+        } else {
+            deleteAfterPasien(l2, prec2, q);
+        }
+    }
+
+
+
 }
