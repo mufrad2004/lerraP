@@ -9,7 +9,8 @@ int main(){
     listPasien lp;
     string namaDokter;
     string namaPasien;
-    adrDokter hapusDokter;
+    adrDokter hapusDokter,d;
+    adrPasien p;
     adrRelasi hapusRelasi;
     buatListDokter(ld);
     buatListPasien(lp);
@@ -74,8 +75,43 @@ int main(){
             cout << "Masukkan nama pasien : " ;
             cin >> namaPasien;
             deletePasienX(ld,lp,namaPasien); 
+        }else if (pilihan ==11){
+            // Cari Pasien
+            cout << "-----------------------------------------------------------" << endl;
+            showAllPasien(lp);
+            cout << "-----------------------------------------------------------" << endl;
+            cout << "Masukkan nama Pasien : " ;
+            cin >> namaPasien;
+            p = cariPasien(lp,namaPasien);
+            if (p != NULL){
+                cout << "Data pasien " << namaPasien << " : " << endl;
+                cout << "   -Nama   : " << p->info.nama << endl;
+                cout << "   -Nik   : " << p->info.nik << endl;
+                cout << "   -Usia   : " << p->info.usia << endl;
+            }else {
+                cout << "Pasien dengan nama" << namaPasien << " tidak ditemukan " << endl;
+            }
+        }else if (pilihan ==12){
+            // Cari Dokter
+            cout << "-----------------------------------------------------------" << endl;
+            showAllDokter(ld);
+            cout << "-----------------------------------------------------------" << endl;
+            cout << "Masukkan nama Dokter : " ;
+            cin >> namaDokter;
+            d = cariDokter(ld,namaDokter);
+            if (d != NULL){
+                cout << "Data dokter " << namaDokter << " : " << endl;
+                cout << "   -Nama   : " << d->info.nama << endl;
+                cout << "   -Kode   : " << d->info.kode << endl;
+                cout << "   -Umur   : " << d->info.umur << endl;
+                cout << "   -Bidang : " << d->info.bidang << endl;
+            }else {
+                cout << "Dokter dengan nama " << namaDokter << " tidak ditemukan" << endl;
+            }
         }
         cout << endl;
         pilihan = menuTugas();
     }
+
+    return 0;
 }

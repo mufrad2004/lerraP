@@ -336,6 +336,8 @@ int menuTugas(){
     cout << "8. Hapus Data Child Pada Dokter X" << endl;
     cout << "9. Jumlah Pasien Dokter X" << endl;
     cout << "10. Delete Pasien" << endl;
+    cout << "11. Cari Pasien" << endl;
+    cout << "12. Cari Dokter" << endl;
     cout << "0. Exit"<< endl;
     cout << "-----------------------------------------------------------" << endl;
     cin >> pilihan;
@@ -350,13 +352,14 @@ void inputDokter(listDokter &l){
     cout << "Berapa Data Dokter yang ingin diinput? ";
     cin >> n;
     for (i = 1; i <= n; i++) {
-        cout << "Masukkan nama Dokter " << ": ";
+        cout << "Data Dokter ke-" << i << " : " << endl;
+        cout << "   -Masukkan nama Dokter   : " ;
         cin >> data.nama;
-        cout << "Masukkan kode Dokter " << ": ";
+        cout << "   -Masukkan kode Dokter   : ";
         cin >> data.kode;
-        cout << "Masukkan umur Dokter " << ": ";
+        cout << "   -Masukkan umur Dokter   : ";
         cin >> data.umur;
-        cout << "Masukkan bidang Dokter " << ": ";
+        cout << "   -Masukkan bidang Dokter : ";
         cin >> data.bidang;
         p = buatElmDokter(data);
         insertDokter(l, p);
@@ -373,11 +376,11 @@ void inputPasien(listPasien &l){
     cin >> jmlData;
     for(int i =1 ; i<= jmlData ; i++ ){
         cout << "Data Pasien ke-" << i << " : " << endl;
-        cout << "   -Masukkan Nama Pasien : ";
+        cout << "   -Masukkan Nama Pasien   : ";
         cin >> data.nama;
-        cout << "   -Masukkan Nik Pasien : ";
+        cout << "   -Masukkan Nik Pasien    : ";
         cin >> data.nik;
-        cout << "   -Masukkan Umur Pasien : ";
+        cout << "   -Masukkan Umur Pasien   : ";
         cin >> data.usia;
         p = buatElmPasien(data);
         insertPasien(l,p);
