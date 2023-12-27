@@ -83,6 +83,8 @@ void insertPasien(listPasien &l , adrPasien p);
 // ? 7. Menghubungkan data parent ke data child (5)
 void insertRelasi(listDokter &l, adrDokter p, adrRelasi q);
 
+//!------------------------------------------------------------------------------------------------------------------------
+
 // ? 8. Menampilkan seluruh data parent beserta childnya (15)
 void showAll(listDokter l);
 
