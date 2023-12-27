@@ -106,7 +106,7 @@ void deletePasienX(listDokter &l1, listPasien &l2, string nama);
 int JmlPasienDokterX(listDokter l, string namaDokter);
 
 
-// Tampilan Menu
+// ? Tampilan Menu
 void clearTerminal();
 
 void judul();
